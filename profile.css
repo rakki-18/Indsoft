@@ -1,0 +1,70 @@
+#frm{
+    text-align: center;
+    font-family: Leelawadee;
+}
+
+#fld{
+    width: 30%;
+   
+    margin: 100px auto;
+    padding-top: 30px;
+    border-color: lightskyblue;
+    padding-left:50px;
+    padding-right:50px;
+}
+
+
+#header{
+  
+  font-size:35px;
+  text-align:left;
+  padding-left:40px;
+  padding-bottom:20px;
+  
+  
+  
+}
+.float-container {
+    min-height: 100px;
+   overflow: hidden;
+   
+    
+}
+
+.float-child {
+    width: 50%;
+    float: left;
+    
+    
+}  
+.float-child2 {
+    width: 50%;
+    float: right;
+    
+    
+} 
+
+.photo {
+    height: 90px;
+    width: 90px;
+    background-color: lightgray;
+    border-radius: 50%;
+    display:inline-block;
+  }
+  
+
+
+.left{
+    float:left;
+    color:black;
+    font-size:20px;
+}
+.scheme_name{
+  padding-left:40px;
+  border:1px solid black;
+  text-align:left;
+  padding-bottom:20px;
+  padding-top:20px;
+  padding-right:40px;
+  
+}
