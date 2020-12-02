@@ -5,6 +5,7 @@ username = 'admin'
 password = 'silent123'
 database_name = 'mygssjms'
 
+
 # Connection
 connection = pymysql.connect(endpoint, user = username, passwd = password, db = database_name)
 
@@ -12,47 +13,28 @@ def lambda_handler(event, context):
 
     
     cursor = connection.cursor()
-    """ 
-    Create Operation
-    """
-    print("create operation")
-    cursor.execute('insert into branchmast(BRNCH_KEY,BRNCH_NAME) values (20.0,"test_branch_name")')
+
+    branch_dict = {}
     cursor.execute('select * from branchmast')
     rows = cursor.fetchall()
-
     for row in rows:
-        print("{0} {1} {2}".format(row[0],row[1],row[2]))
-        
-    """
-    Read Operation
-    """
-    cursor.execute('select * from branchmast')
-    rows = cursor.fetchall()
-
-    for row in rows:
-        print("{0} {1} {2}".format(row[0],row[1],row[2]))
+        branch_dict[row[0]] = row[1]
     
-    """
-    Update Operation
-    """
-    print("update operation")
-    cursor.execute('update branchmast set BRNCH_NAME = "test_branch_name" where BRNCH_KEY = 2.0')
-    cursor.execute('select * from branchmast')
+    scheme_dict = {}
+    cursor.execute('select * from chitgroup')
     rows = cursor.fetchall()
-
     for row in rows:
-        print("{0} {1} {2}".format(row[0],row[1],row[2]))
+        scheme_dict[row[0]] = row[2]
+    cursor.execute('select * from chitmast where Phone_No = "9916490232"')
+    details = cursor.fetchall()
+    
+    
+    
 
-    """
-    Delete Operation
-    """
-    print("delete operation")
-    cursor.execute('delete from branchmast where BRNCH_KEY = 1.0')
-    cursor.execute('select * from branchmast')
-    rows = cursor.fetchall()
-
-    for row in rows:
-        print("{0} {1} {2}".format(row[0],row[1],row[2]))
-
-
+    return {
+        'name': details[0][3],
+        'branch': branch_dict[details[0][12]],
+        'scheme' : scheme_dict[details[0][1]],
+        'amount' : details[0][8]
+    }
 

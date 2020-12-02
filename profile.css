@@ -13,7 +13,16 @@
     padding-right:50px;
 }
 
-
+#Name{
+  font-family: Leelawadee;
+  font-size: 30px;
+  font-weight: bold;
+}
+#Branch{
+  font-family: Leelawadee;
+  font-size: 30px;
+  font-weight: bold;
+}
 #header{
   
   font-size:35px;
