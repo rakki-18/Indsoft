@@ -26,11 +26,11 @@ def lambda_handler(event, context):
     """
     Read Operation
     """
-    cursor.execute('select * from branchmast')
+    cursor.execute('select * from chitmast')
     rows = cursor.fetchall()
 
     for row in rows:
-        print("{0} {1}".format(row[0],row[1]))
+        print(row)
     
     """
     Update Operation

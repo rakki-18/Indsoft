@@ -1,5 +1,8 @@
 # Configuration
 import pymysql
+from datetime import datetime
+from datetime import date
+from dateutil.relativedelta import relativedelta
 endpoint = 'database-1.c1reo38y2ygs.ap-south-1.rds.amazonaws.com'
 username = 'admin'
 password = 'silent123'
@@ -9,6 +12,15 @@ database_name = 'mygssjms'
 # Connection
 connection = pymysql.connect(endpoint, user = username, passwd = password, db = database_name)
 
+def add_one_month(date_time_str):
+    date_time_str = date_time_str[:6] + date_time_str[8:]
+    date_time_obj = datetime.strptime(date_time_str, '%d/%m/%y')
+    one_month = date_time_obj + relativedelta(months=+1)
+    year = one_month.strftime("%Y")
+    month = one_month.strftime("%m")
+    day = one_month.strftime("%d")
+    date_time = one_month.strftime("%d/%m/%Y")
+    return date_time
 def lambda_handler(event, context):
 
     
@@ -28,13 +40,31 @@ def lambda_handler(event, context):
     cursor.execute('select * from chitmast where Phone_No = "9916490232"')
     details = cursor.fetchall()
     
+    length = len(details)
+    name = []
+    branch = []
+    scheme = []
+    amount = []
+    date = []
+    
+    for i in range(length):
+        name.append(details[i][3])
+        branch.append(branch_dict[details[i][12]])
+        scheme.append(scheme_dict[details[i][1]])
+        amount.append(details[i][8])
+        
+        date.append(add_one_month(details[i][6]))
+
+
+    
     
     
 
     return {
-        'name': details[0][3],
-        'branch': branch_dict[details[0][12]],
-        'scheme' : scheme_dict[details[0][1]],
-        'amount' : details[0][8]
+        'name': name,
+        'branch': branch,
+        'scheme' : scheme,
+        'amount' : amount,
+        'date' : date
     }
 
