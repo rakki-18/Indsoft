@@ -23,7 +23,8 @@ def add_one_month(date_time_str):
     return date_time
 def lambda_handler(event, context):
 
-    
+    Phone_No = '9916490232'
+
     cursor = connection.cursor()
 
     branch_dict = {}
@@ -37,7 +38,8 @@ def lambda_handler(event, context):
     rows = cursor.fetchall()
     for row in rows:
         scheme_dict[row[0]] = row[2]
-    cursor.execute('select * from chitmast where Phone_No = "9916490232"')
+    query = 'select * from chitmast where Phone_No = %s'
+    cursor.execute(query, (Phone_No, ))
     details = cursor.fetchall()
     
     length = len(details)
