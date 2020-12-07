@@ -12,6 +12,7 @@ def lambda_handler(event, context):
 
     
     cursor = connection.cursor()
+    
     """ 
     Create Operation
     """
