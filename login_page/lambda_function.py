@@ -12,14 +12,22 @@ def lambda_handler(event, context):
     password = event['queryStringParameters']['passwd']
     cursor = connection.cursor()
 
+
+
     query = 'select User_password from onlineusers where User_name = %s'
     cursor.execute(query,(username, ))
     details = cursor.fetchall()
 
+    print(details)
     if(details == password):
         response = True
     else:
         response = False
+
+    cursor.execute('select * from onlineusers')
+    details  = cursor.fetchall()
+    for row in details:
+        print(row)
 
     responseObject = {}
     responseObject['statusCode'] = 200

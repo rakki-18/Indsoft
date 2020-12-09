@@ -9,7 +9,7 @@ function signup(){
         type: 'get',
         success: function(data){
             
-            alert("hey");
+
             
             var response_htm = '<div id = "response_css">' + data + '</div>';
             $('#response').html(response_htm);
