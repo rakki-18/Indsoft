@@ -53,7 +53,7 @@ def lambda_handler(event, context):
             response = "user has already signed up"
            
             user_key = get_user_key()
-            brnch_key = row[12]
+            brnch_key = details[0][12]
             if(check_already_present(phone) == False):
                 query = 'insert into onlineusers values (%s,%s,%s,%s,%s)'
                 cursor.execute(query,(user_key,username,password,phone,brnch_key, ))
