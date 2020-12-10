@@ -17,10 +17,10 @@ def get_user_key():
     else:
         return details[0][0] + 1
 
-def check_already_present(phone,brnch_key):
-    query = 'select * from onlineusers where Phone_No = %s and Brnch_Key  = %s'
+def check_already_present(phone):
+    query = 'select * from onlineusers where Phone_No = %s'
     cursor = connection.cursor()
-    cursor.execute(query,(phone,brnch_key, ))
+    cursor.execute(query,(phone, ))
     details = cursor.fetchall()
     if(len(details) == 0):
         return False
@@ -51,13 +51,13 @@ def lambda_handler(event, context):
             response = "user does not exist"
         else:
             response = "user has already signed up"
-            for row in details:
-                user_key = get_user_key()
-                brnch_key = row[12]
-                if(check_already_present(phone,brnch_key) == False):
-                    query = 'insert into onlineusers values (%s,%s,%s,%s,%s)'
-                    cursor.execute(query,(user_key,username,password,phone,brnch_key, ))
-                    response = "data updated"
+           
+            user_key = get_user_key()
+            brnch_key = row[12]
+            if(check_already_present(phone) == False):
+                query = 'insert into onlineusers values (%s,%s,%s,%s,%s)'
+                cursor.execute(query,(user_key,username,password,phone,brnch_key, ))
+                response = "data updated"
     
 
     cursor.execute('select * from onlineusers')
