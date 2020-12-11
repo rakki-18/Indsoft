@@ -12,10 +12,10 @@ database_name = 'mygssjms'
 # Connection
 connection = pymysql.connect(endpoint, user = username, passwd = password, db = database_name)
 
-def add_one_month(date_time_str):
+def add_x_month(date_time_str,x):
     date_time_str = date_time_str[:6] + date_time_str[8:]
     date_time_obj = datetime.strptime(date_time_str, '%d/%m/%y')
-    one_month = date_time_obj + relativedelta(months=+1)
+    one_month = date_time_obj + relativedelta(months=+x)
     year = one_month.strftime("%Y")
     month = one_month.strftime("%m")
     day = one_month.strftime("%d")
@@ -55,7 +55,7 @@ def lambda_handler(event, context):
         scheme.append(scheme_dict[details[i][1]])
         amount.append(details[i][8])
         
-        date.append(add_one_month(details[i][6]))
+        date.append(add_x_month(details[i][6],1))
 
 
     

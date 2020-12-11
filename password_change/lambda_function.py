@@ -19,14 +19,16 @@ def lambda_handler(event, context):
     details = cursor.fetchall()
    
     if(old_password != details[0][0]):
-     response = 1
+     response = "wrong password"
     elif(new_password != confirm_password):
-     response = 2
+     response = "passwords don't match"
     else:
-        response = 3
+        response = "password updated"
         query = 'update onlineusers set User_password = %s where User_name = %s'
         cursor.execute(query,(new_password,username, ))
         connection.commit()
+
+    
     
     responseObject = {}
     responseObject['statusCode'] = 200

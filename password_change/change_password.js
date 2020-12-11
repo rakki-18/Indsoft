@@ -8,14 +8,9 @@ function update_password(){
         success: function(data){
             var response;
             
-            if(data == 1)
-             response = "wrong password";
-            else if(data == 2)
-             response = "passwords don't match";
-            else
-             response = "updated successfully";
+            
              
-            var response_htm = '<div id = "response_css">' + response + '</div>';
+            var response_htm = '<div id = "response_css">' + data + '</div>';
             $('#response').html(response_htm);
             
         },
