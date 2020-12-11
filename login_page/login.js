@@ -7,12 +7,9 @@ function login(){
         type: 'get',
         success: function(data){
             
-            if(data)
-             response = "logged in";
-            else
-             response = "wrong password or username";
             
-            var response_htm = '<div id = "response_css">' + response + '</div>';
+            
+            var response_htm = '<div id = "response_css">' + data + '</div>';
             $('#response').html(response_htm);
         },
         error: function (xhr, ajaxOptions, thrownError) {

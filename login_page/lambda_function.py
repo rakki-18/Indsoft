@@ -18,12 +18,15 @@ def lambda_handler(event, context):
     cursor.execute(query,(username, ))
     details = cursor.fetchall()
 
-    print(details)
-    if(details == password):
-        response = True
+    if(len(details) == 0):
+        response = "username doesn't exist"
+    
+    elif(details[0][0] != password):
+        response = "wrong password"
     else:
-        response = False
+        response = "logged in"
 
+        
     cursor.execute('select * from onlineusers')
     details  = cursor.fetchall()
     for row in details:

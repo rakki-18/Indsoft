@@ -57,6 +57,7 @@ def lambda_handler(event, context):
             if(check_already_present(phone) == False):
                 query = 'insert into onlineusers values (%s,%s,%s,%s,%s)'
                 cursor.execute(query,(user_key,username,password,phone,brnch_key, ))
+                connection.commit()
                 response = "data updated"
     
 

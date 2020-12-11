@@ -6,7 +6,7 @@ password = 'silent123'
 database_name = 'mygssjms'
 
 connection = pymysql.connect(endpoint, user = username, passwd = password, db = database_name)
-username = 'test_name'
+username = 'test_password'
 def lambda_handler(event, context):
     old_password = event['queryStringParameters']['old']
     new_password = event['queryStringParameters']['new']
@@ -18,7 +18,7 @@ def lambda_handler(event, context):
     cursor.execute(query,(username, ))
     details = cursor.fetchall()
    
-    if(old_password != details):
+    if(old_password != details[0][0]):
      response = 1
     elif(new_password != confirm_password):
      response = 2
@@ -26,6 +26,7 @@ def lambda_handler(event, context):
         response = 3
         query = 'update onlineusers set User_password = %s where User_name = %s'
         cursor.execute(query,(new_password,username, ))
+        connection.commit()
     
     responseObject = {}
     responseObject['statusCode'] = 200
