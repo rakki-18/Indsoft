@@ -3,38 +3,41 @@
 <head>
     <title>Signup</title>
     <link rel="stylesheet" href="scheme_name.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    
+    <script src="scheme_name.js"></script> 
 </head>
 <body>
-    <form action="mailto:s_sample@yahoo.com" method="get" id="frm">
+    <form action=""  id="frm">
         <fieldset id="fld">
-            <div  class ="scheme_name">
-              Scheme Name 
+            <div  id ="scheme_name">
+              
             </div>
-            <div class = "sub-header">
-            Date of joining - 16/01/2020<br>
-            Due Date <br>
+            <div id = "Date_of_joining">
             </div>
-            <div class = "scheme_name">
+            <div id = "Due_date">
+            </div>
+            <div id = "scheme_name">
               Payments
               </div>
-           <div class = "payment" >
-             <span class="left">1.Due Month 1</span><span class="right">Amount</span>
+           <div id = "payment">
+             <span class = "left">
+              <div id ="due_month"></div>
+             </span>
+             <span class="right">
+               <div id = "amount"></div>
+             </span>
+             <br>
+           </div>
+             
              <br>
           </div>
           <br>
-          <div class = "payment" >
-             <span class="left">1.Due Month 2</span><span class="right">Amount</span>
-             <br>
-          </div>
-          <br>
-          <div class = "payment" >
-             <span class="left">1.Due Month 3</span><span class="right">Amount</span>
-             <br>
-          </div>
+          
            
             <br><br>
     
-            <input type="submit" value="Pay Now" class="btn">
+            <input type="button" value="Pay Now" class="btn" onclick="pay()">
            
             <br><br>
               

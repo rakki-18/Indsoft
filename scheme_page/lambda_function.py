@@ -31,7 +31,7 @@ def get_scheme_name(cgrp_key):
 
 def print_data():
     cursor = connection.cursor()
-    cursor.execute('select * from chitmast')
+    cursor.execute('SELECT count(*) AS NUMBEROFCOLUMNS FROM information_schema.columns WHERE table_name ="mchitrcptmast"')
     details = cursor.fetchall()
     for row in details:
         print(row)
@@ -50,25 +50,19 @@ def lambda_handler(event, context):
     amount = details[0][8]
     date_of_joining = details[0][6]
     scheme_name = get_scheme_name(details[0][1])
-
-    payments_to_be_made = []
-    for i in range(int(total_installments - installments_paid)):
-        payments_to_be_made.append(add_x_month(date_of_joining,installments_paid + i + 1))
+    due_date = add_x_month(date_of_joining,installments_paid + 1)
+    due_month = "Due month " + str(int(installments_paid + 1))
+    brnch_key = details[0][12]
     
-
-    response = {}
-    response['scheme_name'] = scheme_name
-    response['amount'] = amount
-    response['installments_left'] = total_installments - installments_paid
-    response['due_months'] = payments_to_be_made
-
     print_data()
 
-
-    responseObject = {}
-    responseObject['statusCode'] = 200
-    responseObject['headers'] = {}
-    responseObject['headers']['Content-Type'] = 'application/json'
-    responseObject['body'] = json.dumps(response)
-
-    return responseObject
+    
+    return {
+    'scheme_name' : scheme_name,
+    'amount' : amount,
+    'due_date' : due_date,
+    'due_months' : due_month,
+    'date_of_joining' : date_of_joining,
+    'brnch_key' : brnch_key,
+    'chit_key' : chit_key
+    }

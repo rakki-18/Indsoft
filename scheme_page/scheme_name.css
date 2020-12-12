@@ -31,7 +31,7 @@
     border-bottom-right-radius: 20px;
     border-top-left-radius: 20px;
 }
-.scheme_name{
+#scheme_name{
   
   font-size:30px;
   text-align:left;
@@ -41,7 +41,15 @@
   
   
 }
-.sub-header{
+#Due_date{
+  font-size:20px;
+  
+  padding-left:45px;
+  text-align:left;
+  padding-bottom:20px;
+  
+}
+#Date_of_joining{
   font-size:20px;
   
   padding-left:45px;
@@ -58,11 +66,14 @@
     float:left;
     color:black;
 }
-.payment{
+#payment{
   padding-left:40px;
   border:1px solid black;
   text-align:left;
   padding-bottom:20px;
   padding-top:20px;
   padding-right:40px;
+}
+#due_month,#amount{
+  font-size: 20px;
 }
