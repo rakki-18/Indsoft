@@ -32,14 +32,20 @@ def lambda_handler(event,context):
     ref_no = serial_no
 
     cursor = connection.cursor()
-    query  = 'insert into mchitrcptmast values(%s,%s,%s,%s,%s,%s,%s)'
-    cursor.execute(query,(serial_no,ref_no,today,installments_paid,amount,chit_key,brnch_key, ))
+    query  = 'insert into mchitrcptmast values(%s,%s,%s,%s,%s,%s,%s,%s)'
+    cursor.execute(query,(serial_no,ref_no,today,installments_paid,amount,chit_key,brnch_key,txn_ref ))
     connection.commit()
 
     
 
     response = "successful"
 
-    return response
+    responseObject = {}
+    responseObject['statusCode'] = 200
+    responseObject['headers'] = {}
+    responseObject['headers']['Content-Type'] = 'application/json'
+    responseObject['body'] = json.dumps(response)
+
+    return responseObject
 
 

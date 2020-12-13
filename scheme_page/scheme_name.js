@@ -2,7 +2,7 @@ var chit_key , amount , brnch_key;
 $( document ).ready(function(){
    
     $.ajax({
-        url : 'https://617b6vvwjd.execute-api.ap-south-1.amazonaws.com/demo/',
+        url : 'https://w298u9clrc.execute-api.ap-south-1.amazonaws.com/demo/details',
         type: 'get',
         success: function(data){
             chit_key = data['chit_key'];
@@ -31,7 +31,7 @@ $( document ).ready(function(){
 });
 function pay(){
     $.ajax({
-        url: 'https://617b6vvwjd.execute-api.ap-south-1.amazonaws.com/demo/pay?chit_key=' + chit_key + '&amount=' + amount + '&brnch_key=' + brnch_key,
+        url: 'https://z4j54197cb.execute-api.ap-south-1.amazonaws.com/demo/pay?chit_key=' + chit_key + '&amount=' + amount + '&brnch_key=' + brnch_key,
         type: 'get',
         success: function(data){
     
