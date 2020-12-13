@@ -1,6 +1,17 @@
-function signup(){
+function encrypt(test_string){
+    var encrypted_string = "";
+    for(let i= 0; i < test_string.length;i++)
+    {
+        encrypted_string+=(test_string.charCodeAt(i) + 100).toString();
+    }
+    return encrypted_string;
+}
 
-    var to_url = "https://fldz51d8j6.execute-api.ap-south-1.amazonaws.com/demo/signup" + "?username=" + frm.username.value + "&passwd=" + frm.passwd.value
+function signup(){
+    var  encrypted_username = encrypt(frm.username.value);
+    var encrypted_passwd = encrypt(frm.passwd.value);
+
+    var to_url = "https://fldz51d8j6.execute-api.ap-south-1.amazonaws.com/demo/signup" + "?username=" + encrypted_username + "&passwd=" + encrypted_passwd
     + "&otp=" + frm.otp.value+ "&branch=" + frm.branch.value+ "&Phone=" + frm.phone.value
     + "&email=" + frm.email.value+ "&confirm=" + frm.confirm.value;
     

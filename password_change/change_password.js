@@ -1,6 +1,18 @@
+function encrypt(test_string){
+    var encrypted_string = "";
+    for(let i= 0; i < test_string.length;i++)
+    {
+        encrypted_string+=(test_string.charCodeAt(i) + 100).toString();
+    }
+    return encrypted_string;
+}
 
 function update_password(){
-    var to_url = "https://35i970cxs5.execute-api.ap-south-1.amazonaws.com/demo/password" + "?old=" + frm.old.value + "&new=" + frm.new.value + "&con=" + frm.confirm.value;
+    var   encrypted_old = encrypt(frm.old.value);
+    var  encrypted_new = encrypt(frm.new.value);
+    var  ncrypted_con = encrypt(frm.con.value);
+
+    var to_url = "https://35i970cxs5.execute-api.ap-south-1.amazonaws.com/demo/password" + "?old=" + encrypted_old + "&new=" + encrypted_new + "&con=" + encrypted_con;
     
     $.ajax({
         url: to_url,
