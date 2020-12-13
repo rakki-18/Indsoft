@@ -31,7 +31,20 @@ def lambda_handler(event,context):
     serial_no = get_serial_no()
     ref_no = serial_no
 
+    
     cursor = connection.cursor()
+    query = 'select * from chitmast where Chit_Key = %s'
+    cursor.execute(query,(chit_key,))
+    details = cursor.fetchall()
+    total_installments_paid = details[0][0]
+    total_installments_paid += installments_paid
+
+    query = 'update chitmast set Paid_No = %s where Chit_Key = %s'
+    cursor.execute(query,(total_installments_paid,chit_key,))
+    connection.commit()
+
+
+    
     query  = 'insert into mchitrcptmast values(%s,%s,%s,%s,%s,%s,%s,%s)'
     cursor.execute(query,(serial_no,ref_no,today,installments_paid,amount,chit_key,brnch_key,txn_ref ))
     connection.commit()
