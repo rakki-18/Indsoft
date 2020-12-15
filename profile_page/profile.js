@@ -12,7 +12,8 @@ $( document ).ready(function(){
             $('#Branch').html(data["branch"][0]);
             for(i = 0; i < data["name"].length;i++)
             {
-                var codeblock = '<div class = "scheme_name" >' + 
+                var codeblock = '<a href = "file:///home/rakshit/Indsoft/scheme_page/scheme_name.htm">' +
+                '<div class = "scheme_name" >' + 
                 '<span class="left">' + 
                   data["scheme"][i] +
                 '</span>' +
@@ -25,9 +26,13 @@ $( document ).ready(function(){
                 data["date"][i] +
               '</span>' + 
                 '<br><br>' +
-             '</div>' ;
-             
+             '</div>' + '</a>' ;
+             var codeblock2 = '<a href = "file:///home/rakshit/Indsoft/scheme_page/scheme_name.htm">';
+             var codeblock3 = '</a>';
+            
              document.getElementById("display_schemes").innerHTML += codeblock;
+            
+
             }
         },
         error: function (xhr, ajaxOptions, thrownError) {

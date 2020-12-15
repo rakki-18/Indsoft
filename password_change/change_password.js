@@ -10,7 +10,7 @@ function encrypt(test_string){
 function update_password(){
     var   encrypted_old = encrypt(frm.old.value);
     var  encrypted_new = encrypt(frm.new.value);
-    var  ncrypted_con = encrypt(frm.con.value);
+    var  encrypted_con = encrypt(frm.confirm.value);
 
     var to_url = "https://35i970cxs5.execute-api.ap-south-1.amazonaws.com/demo/password" + "?old=" + encrypted_old + "&new=" + encrypted_new + "&con=" + encrypted_con;
     
