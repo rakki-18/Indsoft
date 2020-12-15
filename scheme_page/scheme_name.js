@@ -9,14 +9,15 @@ $( document ).ready(function(){
             amount = data['amount'];
             brnch_key = data['brnch_key'];
             $('#scheme_name').html(data['scheme_name']);
-            $('#Date_of_joining').html(data['date_of_joining']);
-            var codeblock =  '<div id = "payment">' + 
-            '<span class="left">' + data['due_months'] + '</span' +
-             '<span class="right">' + data['amount'] + '</span>' + '<br>'
-             + '</div>';
-
-             document.getElementById("due_month").innerHTML += data['due_months'];
-             document.getElementById("amount").innerHTML += data['amount']; 
+            
+            if(data["is_fixed_scheme"])
+            {
+                $('#Date_of_joining').html(data['date_of_joining']);
+           
+                document.getElementById("due_month").innerHTML += data['due_months'];
+                document.getElementById("amount").innerHTML += data['amount']; 
+            }
+            
 
 
 

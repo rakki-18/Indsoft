@@ -4,6 +4,7 @@ function encrypt(test_string){
     {
         encrypted_string+=(test_string.charCodeAt(i) + 100).toString();
     }
+    
     return encrypted_string;
 }
 
@@ -12,6 +13,7 @@ function encrypt(test_string){
 function login(){
     encrypted_password = encrypt(frm.passwd.value);
     encrypted_username = encrypt(frm.username.value);
+    console.log(encrypted_username);
     var to_url = "https://4w2yztgs06.execute-api.ap-south-1.amazonaws.com/demo/login" + "?username=" + encrypted_password + "&passwd=" + encrypted_username;
     
     $.ajax({

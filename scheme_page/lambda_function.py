@@ -35,7 +35,16 @@ def print_data():
     details  = cursor.fetchall()
     for row in details:
         print(row)
-    
+def check_is_fixed_scheme(cgrp_key):
+    cursor = connection.cursor()
+    query = 'select Scheme_Key from chitgroup where CGrp_Key = %s'
+    cursor.execute(query,(cgrp_key,))
+    details = cursor.fetchall()
+    if(details[0][0] <= 2):
+        return  True
+    else:
+        return False
+
 def lambda_handler(event, context):
 
     chit_key = '388'
@@ -53,6 +62,9 @@ def lambda_handler(event, context):
     due_date = add_x_month(date_of_joining,installments_paid + 1)
     due_month = "Due month " + str(int(installments_paid + 1))
     brnch_key = details[0][12]
+    cgrp_key = details[0][1]
+    is_fixed_scheme = check_is_fixed_scheme(cgrp_key)
+
     
     response = {}
     response['scheme_name']  =  scheme_name
@@ -62,6 +74,7 @@ def lambda_handler(event, context):
     response['date_of_joining'] =   date_of_joining
     response['brnch_key'] =  brnch_key
     response['chit_key'] =   chit_key
+    response['is_fixed_scheme']  = is_fixed_scheme
 
     responseObject = {}
     responseObject['statusCode'] = 200
