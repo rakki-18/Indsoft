@@ -27,7 +27,7 @@ function login(){
             $('#response').html(response_htm);
             if(data == "logged in")
             {
-                location.href = "file:///home/rakshit/Indsoft/profile_page/profile.htm"; 
+                location.href = "/profile_page/profile.htm"; 
             }
         },
         error: function (xhr, ajaxOptions, thrownError) {

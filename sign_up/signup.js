@@ -26,7 +26,7 @@ function signup(){
             var response_htm = '<div id = "response_css">' + data + '</div>';
             $('#response').html(response_htm);
             if(data == "data updated")
-            location.href = "file:///home/rakshit/Indsoft/profile_page/profile.htm"; 
+            location.href = "/profile_page/profile.htm"; 
         },
         error: function (xhr, ajaxOptions, thrownError) {
             var errorMsg = 'Ajax request failed: ' + xhr;

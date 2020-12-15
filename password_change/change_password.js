@@ -25,7 +25,7 @@ function update_password(){
             var response_htm = '<div id = "response_css">' + data + '</div>';
             $('#response').html(response_htm);
             if(data == "password updated")
-            location.href = "file:///home/rakshit/Indsoft/profile_page/profile.htm"; 
+            location.href = "/profile_page/profile.htm"; 
             
         },
         error: function (xhr, ajaxOptions, thrownError) {

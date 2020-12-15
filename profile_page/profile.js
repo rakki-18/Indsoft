@@ -12,7 +12,7 @@ $( document ).ready(function(){
             $('#Branch').html(data["branch"][0]);
             for(i = 0; i < data["name"].length;i++)
             {
-                var codeblock = '<a href = "file:///home/rakshit/Indsoft/scheme_page/scheme_name.htm">' +
+                var codeblock = '<a href = "/scheme_page/scheme_name.htm">' +
                 '<div class = "scheme_name" >' + 
                 '<span class="left">' + 
                   data["scheme"][i] +
@@ -27,8 +27,7 @@ $( document ).ready(function(){
               '</span>' + 
                 '<br><br>' +
              '</div>' + '</a>' ;
-             var codeblock2 = '<a href = "file:///home/rakshit/Indsoft/scheme_page/scheme_name.htm">';
-             var codeblock3 = '</a>';
+             
             
              document.getElementById("display_schemes").innerHTML += codeblock;
             
