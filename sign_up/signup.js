@@ -10,10 +10,11 @@ function encrypt(test_string){
 function signup(){
     var  encrypted_username = encrypt(frm.username.value);
     var encrypted_passwd = encrypt(frm.passwd.value);
+    var confirm_passwd = encrypt(frm.confirm.value);
 
     var to_url = "https://fldz51d8j6.execute-api.ap-south-1.amazonaws.com/demo/signup" + "?username=" + encrypted_username + "&passwd=" + encrypted_passwd
     + "&otp=" + frm.otp.value+ "&branch=" + frm.branch.value+ "&Phone=" + frm.phone.value
-    + "&email=" + frm.email.value+ "&confirm=" + frm.confirm.value;
+    + "&email=" + frm.email.value+ "&confirm=" + confirm_passwd;
     
     $.ajax({
         url: to_url,
@@ -24,6 +25,8 @@ function signup(){
             
             var response_htm = '<div id = "response_css">' + data + '</div>';
             $('#response').html(response_htm);
+            if(data == "data updated")
+            location.href = "file:///home/rakshit/Indsoft/profile_page/profile.htm"; 
         },
         error: function (xhr, ajaxOptions, thrownError) {
             var errorMsg = 'Ajax request failed: ' + xhr;

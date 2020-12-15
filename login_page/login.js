@@ -25,6 +25,10 @@ function login(){
             
             var response_htm = '<div id = "response_css">' + data + '</div>';
             $('#response').html(response_htm);
+            if(data == "logged in")
+            {
+                location.href = "file:///home/rakshit/Indsoft/profile_page/profile.htm"; 
+            }
         },
         error: function (xhr, ajaxOptions, thrownError) {
             var errorMsg = 'Ajax request failed: ' + xhr;
