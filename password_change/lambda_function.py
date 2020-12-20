@@ -6,11 +6,13 @@ password = 'silent123'
 database_name = 'mygssjms'
 
 connection = pymysql.connect(endpoint, user = username, passwd = password, db = database_name)
-username = 'test_password'
+
 def lambda_handler(event, context):
     old_password = event['queryStringParameters']['old']
     new_password = event['queryStringParameters']['new']
     confirm_password = event['queryStringParameters']['con']
+    username = event['queryStringParameters']['username']
+
 
     cursor = connection.cursor()
    

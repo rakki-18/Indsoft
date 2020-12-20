@@ -11,6 +11,7 @@ function signup(){
     var  encrypted_username = encrypt(frm.username.value);
     var encrypted_passwd = encrypt(frm.passwd.value);
     var confirm_passwd = encrypt(frm.confirm.value);
+   
 
     var to_url = "https://fldz51d8j6.execute-api.ap-south-1.amazonaws.com/demo/signup" + "?username=" + encrypted_username + "&passwd=" + encrypted_passwd
     + "&otp=" + frm.otp.value+ "&branch=" + frm.branch.value+ "&Phone=" + frm.phone.value
@@ -26,7 +27,7 @@ function signup(){
             var response_htm = '<div id = "response_css">' + data + '</div>';
             $('#response').html(response_htm);
             if(data == "data updated")
-            location.href = "/profile_page/profile.htm"; 
+            location.href = "/profile_page/profile.htm?username="+encrypted_username; 
         },
         error: function (xhr, ajaxOptions, thrownError) {
             var errorMsg = 'Ajax request failed: ' + xhr;

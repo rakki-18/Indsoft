@@ -47,7 +47,7 @@ def check_is_fixed_scheme(cgrp_key):
 
 def lambda_handler(event, context):
 
-    chit_key = '388'
+    chit_key = event['queryStringParameters']['chit_key']
 
     cursor = connection.cursor()
     query = 'select * from chitmast where Chit_Key = %s'

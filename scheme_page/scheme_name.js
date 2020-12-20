@@ -1,8 +1,10 @@
 var chit_key , amount , brnch_key;
 $( document ).ready(function(){
+    const urlParams = new URLSearchParams(window.location.search);
+    const chit_key = urlParams.get('chit_key');
    
     $.ajax({
-        url : 'https://w298u9clrc.execute-api.ap-south-1.amazonaws.com/demo/details',
+        url : 'https://w298u9clrc.execute-api.ap-south-1.amazonaws.com/demo/details?chit_key=' + chit_key,
         type: 'get',
         success: function(data){
             chit_key = data['chit_key'];

@@ -21,9 +21,18 @@ def add_x_month(date_time_str,x):
     day = one_month.strftime("%d")
     date_time = one_month.strftime("%d/%m/%Y")
     return date_time
+
+def get_phone_no(username):
+    cursor = connection.cursor()
+    query = 'select Phone_No from onlineusers where User_name = %s'
+    cursor.execute(query,(username,))
+    details = cursor.fetchall()
+    return details[0][0]
+
 def lambda_handler(event, context):
 
-    Phone_No = '9916490232'
+    username = event['queryStringParameters']['username']
+    Phone_No = get_phone_no(username)
 
     cursor = connection.cursor()
 
@@ -48,13 +57,14 @@ def lambda_handler(event, context):
     scheme = []
     amount = []
     date = []
+    chit_key = []
     
     for i in range(length):
         name.append(details[i][3])
         branch.append(branch_dict[details[i][12]])
         scheme.append(scheme_dict[details[i][1]])
         amount.append(details[i][8])
-        
+        chit_key.append(details[i][0])
         date.append(add_x_month(details[i][6],1))
 
 
@@ -67,6 +77,7 @@ def lambda_handler(event, context):
         'branch': branch,
         'scheme' : scheme,
         'amount' : amount,
-        'date' : date
+        'date' : date,
+        'chit_key' : chit_key
     }
 

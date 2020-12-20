@@ -8,11 +8,17 @@ function encrypt(test_string){
 }
 
 function update_password(){
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const username = urlParams.get('username');
+
     var   encrypted_old = encrypt(frm.old.value);
     var  encrypted_new = encrypt(frm.new.value);
     var  encrypted_con = encrypt(frm.confirm.value);
+    
 
-    var to_url = "https://35i970cxs5.execute-api.ap-south-1.amazonaws.com/demo/password" + "?old=" + encrypted_old + "&new=" + encrypted_new + "&con=" + encrypted_con;
+    var to_url = "https://35i970cxs5.execute-api.ap-south-1.amazonaws.com/demo/password" + "?old=" + encrypted_old + "&new=" + encrypted_new + "&con=" + encrypted_con
+    +'&username='+username;
     
     $.ajax({
         url: to_url,
@@ -25,7 +31,7 @@ function update_password(){
             var response_htm = '<div id = "response_css">' + data + '</div>';
             $('#response').html(response_htm);
             if(data == "password updated")
-            location.href = "/profile_page/profile.htm"; 
+            location.href = "/profile_page/profile.htm?username="+username; 
             
         },
         error: function (xhr, ajaxOptions, thrownError) {
