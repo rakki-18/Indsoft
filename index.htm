@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Signup</title>
+    <link rel="stylesheet" href="signup.css">
+    <script src="signup.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+</head>
+<body>
+<form  id="frm">
+    <fieldset id="fld">
+        <legend>Sign Up</legend>
+        <label for="pass"></label>
+        <input type="text" size="30" id="username" placeholder="Enter username" maxlength="40" required><br><br>
+        <label for="email"></label>
+        <input type="email" size="30" id="email" placeholder="Enter a Valid Email" maxlength="30" required><br><br>
+
+        <label for="pass"></label>
+        <input type="password" size="30" id="passwd" placeholder="Enter Password" maxlength="30" required><br><br>
+
+        <label for="pass"></label>
+        <input type="password" size="30" id="confirm" placeholder="Confirm Password" maxlength="40" required><br><br>
+         <label for="pass"></label>
+        <input type="text" size="30" id="branch" placeholder="Enter branch name" maxlength="40" required><br><br>
+      <label for="pass"></label>
+        <input type="text" size="30" id="phone" placeholder="+91 "  required><br><br>
+      <u>GET OTP</u>
+      <br><br>
+      <label for="pass"></label>
+        <input type="text" size="30" id="otp" placeholder="Enter OTP" maxlength="40" required><br><br>
+
+       
+        <br><br>
+        <div id = "response"></div>
+        <br><br>
+
+        <input type="button" value="Next" class="btn" onclick="signup()">
+       
+        <br><br>
+        Do you already have an account? <a href="/login_page/login.htm">Login</a><br><br><br>
+
+    </fieldset>
+</form>
+</body>
+</html>
