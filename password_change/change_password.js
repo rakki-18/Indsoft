@@ -7,6 +7,8 @@ function encrypt(test_string){
     return encrypted_string;
 }
 
+/* sending a get request to the API with the parameters that the user entered while submitting the form and then outputting the data returned by the 
+   lambda function in the html page */
 function update_password(){
 
     const urlParams = new URLSearchParams(window.location.search);

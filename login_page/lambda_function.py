@@ -6,28 +6,26 @@ password = 'silent123'
 database_name = 'mygssjms'
 
 connection = pymysql.connect(endpoint, user = username, passwd = password, db = database_name)
-
+""" function inputs the username and password and checks if it is a valid credential"""
 def lambda_handler(event, context):
     username = event['queryStringParameters']['username']
     password = event['queryStringParameters']['passwd']
+    
     cursor = connection.cursor()
-
-
-
     query = 'select User_password from onlineusers where User_name = %s'
     cursor.execute(query,(username, ))
     details = cursor.fetchall()
-
-    if(len(details) == 0):
-        response = "username doesn't exist"
     
-    elif(details[0][0] != password):
+
+    if(len(details) == 0):                             # if username is not present in the database
+        response = "username doesn't exist"
+    elif(details[0][0] != password):                  #if the corresponding password to the username is different 
         response = "wrong password"
-    else:
+    else:                                             # given credentials are correct
         response = "logged in"
 
    
-
+    """ debug message """
     cursor.execute('select * from onlineusers')
     details  = cursor.fetchall()
     for row in details:

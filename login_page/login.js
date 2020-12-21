@@ -1,3 +1,4 @@
+/* function to encyrpt the given string as 'ascii value + 100' */
 function encrypt(test_string){
     var encrypted_string = "";
     for(let i= 0; i < test_string.length;i++)
@@ -8,7 +9,7 @@ function encrypt(test_string){
     return encrypted_string;
 }
 
-
+/* sending an ajax get request to the API when the user clicks login */
 function login(){
     encrypted_password = encrypt(frm.passwd.value);
     encrypted_username = encrypt(frm.username.value);

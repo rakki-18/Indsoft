@@ -1,6 +1,8 @@
 var amount , brnch_key;
 const urlParams = new URLSearchParams(window.location.search);
 const chit_key = urlParams.get('chit_key');
+
+/* display the details of the scheme associated with the particular chit_key */
 $( document ).ready(function(){
     
    
@@ -37,6 +39,7 @@ $( document ).ready(function(){
 
      });
 });
+/* when the user pays, call the API that is linked to the lambda function that updates the mchitrcpctmast table */
 function pay(){
     $.ajax({
         url: 'https://z4j54197cb.execute-api.ap-south-1.amazonaws.com/demo/pay?chit_key=' + chit_key + '&amount=' + amount + '&brnch_key=' + brnch_key,

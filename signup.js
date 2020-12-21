@@ -7,6 +7,7 @@ function encrypt(test_string){
     return encrypted_string;
 }
 
+/* when the user signs up with some credentials, call the API with the credentials and then redirect to the profile page if it is a successful sign up */
 function signup(){
     var  encrypted_username = encrypt(frm.username.value);
     var encrypted_passwd = encrypt(frm.passwd.value);

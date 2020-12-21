@@ -1,5 +1,5 @@
 
-
+/* displays the details of the all the schemes that are registered with the particular username by sending ajax request to the API */
 $( document ).ready(function(){
   
    const urlParams = new URLSearchParams(window.location.search);

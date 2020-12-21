@@ -13,6 +13,7 @@ database_name = 'mygssjms'
 # Connection
 connection = pymysql.connect(endpoint, user = username, passwd = password, db = database_name)
 
+""" given a date, the function adds x months to the date and returns the new date"""
 def add_x_month(date_time_str,x):
     date_time_str = date_time_str[:6] + date_time_str[8:]
     date_time_obj = datetime.strptime(date_time_str, '%d/%m/%y')
@@ -23,6 +24,7 @@ def add_x_month(date_time_str,x):
     date_time = one_month.strftime("%d/%m/%Y")
     return date_time
 
+""" given the username, the function returns the phone no: of the user """
 def get_phone_no(username):
     cursor = connection.cursor()
     query = 'select Phone_No from onlineusers where User_name = %s'
@@ -32,24 +34,30 @@ def get_phone_no(username):
 
     return details[0][0]
 
+""" function inputs the username and returns all the details of the scheme registered under the username """
 def lambda_handler(event, context):
 
+    """ find the Phone_No from the username """
     username = event['queryStringParameters']['username']
     Phone_No = get_phone_no(username)
 
     cursor = connection.cursor()
 
+    """ a dictionary that maps branch_key to branch name """
     branch_dict = {}
     cursor.execute('select * from branchmast')
     rows = cursor.fetchall()
     for row in rows:
         branch_dict[row[0]] = row[1]
     
+    """ a dictionary that maps scheme_key to scheme name """
     scheme_dict = {}
     cursor.execute('select * from chitgroup')
     rows = cursor.fetchall()
     for row in rows:
         scheme_dict[row[0]] = row[2]
+
+    """ qeuerying the Phone_No to the database """
     query = 'select * from chitmast where Phone_No = %s'
     cursor.execute(query, (Phone_No, ))
     details = cursor.fetchall()
@@ -62,6 +70,7 @@ def lambda_handler(event, context):
     date = []
     chit_key = []
     
+    """ storing the  branch name, scheme name, amount , date of each scheme into a list """
     for i in range(length):
         name.append(details[i][3])
         branch.append(branch_dict[details[i][12]])
@@ -72,6 +81,7 @@ def lambda_handler(event, context):
      
     response = {}
     
+    """ returning the details of each scheme """
     response['name'] = name
     response['branch'] = branch
     response['scheme'] = scheme
