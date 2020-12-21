@@ -26,6 +26,16 @@ def check_already_present(phone):
         return False
     else:
         return True
+
+def username_exists(username):
+    query = 'select * from onlineusers where User_name = %s'
+    cursor = connection.cursor()
+    cursor.execute(query,(username,))
+    details = cursor.fetchall()
+    if(len(details) == 0):
+        return False
+    else:
+        return True
      
 def lambda_handler(event, context):
     phone = event['queryStringParameters']['Phone']
@@ -48,17 +58,22 @@ def lambda_handler(event, context):
         cursor.execute(query,(phone, ))
         details = cursor.fetchall()
         if(len(details) == 0):
-            response = "user does not exist"
+            response = "phone number not signed up for any scheme"
         else:
-            response = "user has already signed up"
-           
-            user_key = get_user_key()
-            brnch_key = details[0][12]
-            if(check_already_present(phone) == False):
-                query = 'insert into onlineusers values (%s,%s,%s,%s,%s)'
-                cursor.execute(query,(user_key,username,password,phone,brnch_key, ))
-                connection.commit()
-                response = "data updated"
+            
+            if(username_exists(username) == True):
+                response = "username exists"
+            else:
+                user_key = get_user_key()
+                brnch_key = details[0][12]
+                if(check_already_present(phone) == False):
+                    query = 'insert into onlineusers values (%s,%s,%s,%s,%s)'
+                    cursor.execute(query,(user_key,username,password,phone,brnch_key, ))
+                    connection.commit()
+                    response = "data updated"
+                else:
+                    response = "user has already signed up"
+    
     
 
     cursor.execute('select * from onlineusers')

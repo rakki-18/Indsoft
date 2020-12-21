@@ -1,13 +1,14 @@
-var chit_key , amount , brnch_key;
+var amount , brnch_key;
+const urlParams = new URLSearchParams(window.location.search);
+const chit_key = urlParams.get('chit_key');
 $( document ).ready(function(){
-    const urlParams = new URLSearchParams(window.location.search);
-    const chit_key = urlParams.get('chit_key');
+    
    
     $.ajax({
         url : 'https://w298u9clrc.execute-api.ap-south-1.amazonaws.com/demo/details?chit_key=' + chit_key,
         type: 'get',
         success: function(data){
-            chit_key = data['chit_key'];
+            //chit_key = data['chit_key'];
             amount = data['amount'];
             brnch_key = data['brnch_key'];
             $('#scheme_name').html(data['scheme_name']);
@@ -18,6 +19,10 @@ $( document ).ready(function(){
            
                 document.getElementById("due_month").innerHTML += data['due_months'];
                 document.getElementById("amount").innerHTML += data['amount']; 
+            }
+            else
+            {
+                $('#Date_of_joining').html('No Due Date');
             }
             
 

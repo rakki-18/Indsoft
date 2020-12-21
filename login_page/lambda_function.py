@@ -26,9 +26,9 @@ def lambda_handler(event, context):
     else:
         response = "logged in"
 
-    
+   
 
-    cursor.execute('select * from chitmast')
+    cursor.execute('select * from onlineusers')
     details  = cursor.fetchall()
     for row in details:
         print(row)

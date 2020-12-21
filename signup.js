@@ -11,6 +11,8 @@ function signup(){
     var  encrypted_username = encrypt(frm.username.value);
     var encrypted_passwd = encrypt(frm.passwd.value);
     var confirm_passwd = encrypt(frm.confirm.value);
+    console.log(encrypted_username);
+    console.log(frm.username.value);
    
 
     var to_url = "https://fldz51d8j6.execute-api.ap-south-1.amazonaws.com/demo/signup" + "?username=" + encrypted_username + "&passwd=" + encrypted_passwd

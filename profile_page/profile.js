@@ -4,11 +4,15 @@ $( document ).ready(function(){
   
    const urlParams = new URLSearchParams(window.location.search);
    const username = urlParams.get('username');
+
+   var codeblock1 = '<a href= "/password_change/change_password.htm?username=' + username+'">Change Password</a>';
+   document.getElementById("change_password").innerHTML += codeblock1;
+   
    
    
     $.ajax({
        
-        url: 'https://em7ialrwbi.execute-api.ap-south-1.amazonaws.com/demo' + '?username='+ username,
+        url: 'https://iyp7kair9b.execute-api.ap-south-1.amazonaws.com/demo/profile' + '?username='+ username,
         type: 'get',
         success: function(data){
             
@@ -18,7 +22,7 @@ $( document ).ready(function(){
             for(i = 0; i < data["name"].length;i++)
             {
                
-                var codeblock = '<a href = "/scheme_page/scheme_name.htm?chit_key='+ data['chit_key'][i] + '>' +
+                var codeblock = '<a href = "/scheme_page/scheme_name.htm?chit_key='+ data['chit_key'][i] + '">' +
                 '<div class = "scheme_name" >' + 
                 '<span class="left">' + 
                   data["scheme"][i] +

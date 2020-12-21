@@ -1,5 +1,6 @@
 # Configuration
 import pymysql
+import json
 from datetime import datetime
 from datetime import date
 from dateutil.relativedelta import relativedelta
@@ -27,6 +28,8 @@ def get_phone_no(username):
     query = 'select Phone_No from onlineusers where User_name = %s'
     cursor.execute(query,(username,))
     details = cursor.fetchall()
+    print(len(details))
+
     return details[0][0]
 
 def lambda_handler(event, context):
@@ -66,18 +69,22 @@ def lambda_handler(event, context):
         amount.append(details[i][8])
         chit_key.append(details[i][0])
         date.append(add_x_month(details[i][6],1))
-
+     
+    response = {}
+    
+    response['name'] = name
+    response['branch'] = branch
+    response['scheme'] = scheme
+    response['amount'] = amount
+    response['chit_key'] = chit_key
+    response['date'] = date
 
     
-    
-    
+    responseObject = {}
+    responseObject['statusCode'] = 200
+    responseObject['headers'] = {}
+    responseObject['headers']['Content-Type'] = 'application/json'
+    responseObject['body'] = json.dumps(response)
 
-    return {
-        'name': name,
-        'branch': branch,
-        'scheme' : scheme,
-        'amount' : amount,
-        'date' : date,
-        'chit_key' : chit_key
-    }
+    return responseObject
 
