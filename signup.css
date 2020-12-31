@@ -17,6 +17,11 @@ legend{
 }
 #pass{
     color: lightslategray;
+    
+}
+label{
+    height:50px;
+    width: 10px;
 }
 span{
     color: red;
@@ -48,4 +53,7 @@ input:focus{
 }
 #response_css{
     color: red;
+}
+#phone, #otp{
+    width:260px;
 }

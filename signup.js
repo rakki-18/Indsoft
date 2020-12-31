@@ -38,4 +38,9 @@ function signup(){
             $('#response').html(errorMsg);
         }
     });
+    return false;
+}
+function getotp()
+{
+    alert("otp sent");
 }
