@@ -4,27 +4,30 @@
     <title>Signup</title>
     <link rel="stylesheet" href="signup.css">
     
-    
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> 
     <script src="/signup.js"></script> 
     
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    
+    
     
 </head>
 <body>
 <form  id="frm" onsubmit="return signup()">
     <fieldset id="fld">
         <legend>Sign Up</legend>
-        <label for="pass" ></label>
-        <input type="text" size="30" id="username" placeholder="Enter username" maxlength="40" required><br><br>
+        <label for="username" ></label>
+        <input type="text" pattern="[a-zA-Z0-9!@#$%^*_|]{1,25}"  size="30" id="username" placeholder="Enter username" maxlength="40" required><br><br>
         <label for="email"></label>
         <input type="email" size="30" id="email" placeholder="Enter a Valid Email" maxlength="30" required><br><br>
 
         <label for="pass"></label>
-        <input type="password" size="30" id="passwd" placeholder="Enter Password" maxlength="30" required><br><br>
+        <input type="password" size="30" name = "passwd" id="passwd"  placeholder="Enter Password" maxlength="30" required><br><br>
 
         <label for="pass"></label>
-        <input type="password" size="30" id="confirm" placeholder="Confirm Password" maxlength="40" required><br><br>
+        <input type="password" size="30" name = "confirm" id="confirm"  placeholder="Confirm Password" maxlength="40" required><br><br>
          <label for="pass"></label>
+         <span id='message'></span><br><br>
         <input type="text" size="30" id="branch" placeholder="Enter branch name" maxlength="40" required><br><br>
       <label for="pass"></label>
         <input type="number" size="40" id="phone" placeholder="Enter Phone number"  required><br><br>

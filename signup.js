@@ -44,3 +44,11 @@ function getotp()
 {
     alert("otp sent");
 }
+$( document ).ready(function(){
+  $('#passwd, #confirm').on('keyup', function () {
+        if ($('#passwd').val() == $('#confirm').val()) {
+            $('#message').html('Matching').css('color', 'green');
+        } else 
+            $('#message').html('Not Matching').css('color', 'red');
+  });
+});
